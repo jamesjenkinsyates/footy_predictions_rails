@@ -1,8 +1,13 @@
 FootyPredictionsRails::Application.routes.draw do
-  
-  get './login', to: "sessions#new", as: login
-  match 'auth/:provider/callback', to: "sessions#create"
-  match '/auth/failure', to: "sessions#failure"
+
+  get '/login', to: "sessions#new", as: :login
+  # match 'auth/:provider/callback', to: "sessions#create", via: 'get'
+  # match '/auth/failure', to: "sessions#failure", via: 'get'
+
+  match '/auth/:provider/callback', :to => 'sessions#create', via: [:get, :post]
+  match '/auth/failure', :to => 'sessions#failure', via: [:get, :post]
+
+  get '/logout', :to => 'sessions#destroy', via: 'delete'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
