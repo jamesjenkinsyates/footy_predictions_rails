@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   has_many :authorizations
 
   validates :name, :email, presence: true
+  validates :email, presence: tru
 
   def add_provider(auth_hash)
     # Check if the provider already exists, so we don't add it twice

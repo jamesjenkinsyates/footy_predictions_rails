@@ -4,7 +4,6 @@ class Prediction < ActiveRecord::Base
 
 
 
-
   # def score_points predicted1, predicted2, actual1, actual2
   #   prediction = [predicted1, predicted2]
   #   actual = [actual1, actual2]
