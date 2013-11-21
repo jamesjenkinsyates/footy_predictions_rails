@@ -1,8 +1,6 @@
 class Prediction < ActiveRecord::Base
 
-
-
-
+  belongs_to :user
 
   # def score_points predicted1, predicted2, actual1, actual2
   #   prediction = [predicted1, predicted2]
@@ -34,5 +32,6 @@ class Prediction < ActiveRecord::Base
   # def away_win? home, away
   #   home-away < 0
   # end
+
 
 end

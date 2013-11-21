@@ -20,18 +20,13 @@ Scenario: Making Predictions
   Then I should see my predictions
 
   Table: Predictions 
-  SAT 23 NOV 2013 
-| Everton   | Liverpool      | 12:45
-| Arsenal   | Southampton    | 15:00
-| Fulham    | Swansea        | 15:00
-| Hull      | Crystal Palace | 15:00
-| Newcastle | Norwich        | 15:00
-| Stoke     | Sunderland     | 15:00
-| West Ham  | Chelsea        | 17:30
-
-SUN 24 NOV 2013
-| Man City  | Tottenham      | 13:30
-| Cardiff   | Man Utd        | 16:00
-
-MON 25 NOV 2013
-| West Brom | Aston Villa    | 20:00
+    | Everton   | Liverpool      | 12:45 |
+    | Arsenal   | Southampton    | 15:00 |
+    | Fulham    | Swansea        | 15:00 |
+    | Hull      | Crystal Palace | 15:00 |
+    | Newcastle | Norwich        | 15:00 |
+    | Stoke     | Sunderland     | 15:00 |
+    | West Ham  | Chelsea        | 17:30 |
+    | Man City  | Tottenham      | 13:30 |
+    | Cardiff   | Man Utd        | 16:00 |
+    | West Brom | Aston Villa    | 20:00 |
