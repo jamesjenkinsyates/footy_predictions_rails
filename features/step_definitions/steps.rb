@@ -37,3 +37,11 @@ end
 Then(/^I should see the current leaderboard$/) do
   pending # express the regexp above with the code you wish you had
 end
+
+
+Given(/^these matches$/) do |table|
+  table.raw.each do |home,h_score,away,a_score,time|
+    
+  end
+end
+

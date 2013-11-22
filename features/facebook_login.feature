@@ -15,18 +15,16 @@ Scenario: Predictions
 
 Scenario: Making Predictions
   Given I am on the "make predictions" page
-  When I click the enter my predictions
+  When I click the following predictions:
+    | Everton   | 1 | Liverpool      | 2 | 23rd October 12:45 |
+    | Arsenal   | 1 | Southampton    | 1 | 23rd October 15:00 |
+    | Fulham    | 1 | Swansea        | 1 | 23rd October 15:00 |
+    | Hull      | 1 | Crystal Palace | 1 | 23rd October 15:00 |
+    | Newcastle | 1 | Norwich        | 1 | 23rd October 15:00 |
+    | Stoke     | 1 | Sunderland     | 1 | 23rd October 15:00 |
+    | West Ham  | 1 | Chelsea        | 1 | 23rd October 17:30 |
+    | Man City  | 1 | Tottenham      | 1 | 24th October 13:30 |
+    | Cardiff   | 1 | Man Utd        | 1 | 24th October 16:00 |
+    | West Brom | 1 | Aston Villa    | 1 | 25th October 20:00 |
   And click the "Submit Predictions" button
   Then I should see my predictions
-
-  Table: Predictions 
-    | Everton   | Liverpool      | 12:45 |
-    | Arsenal   | Southampton    | 15:00 |
-    | Fulham    | Swansea        | 15:00 |
-    | Hull      | Crystal Palace | 15:00 |
-    | Newcastle | Norwich        | 15:00 |
-    | Stoke     | Sunderland     | 15:00 |
-    | West Ham  | Chelsea        | 17:30 |
-    | Man City  | Tottenham      | 13:30 |
-    | Cardiff   | Man Utd        | 16:00 |
-    | West Brom | Aston Villa    | 20:00 |
