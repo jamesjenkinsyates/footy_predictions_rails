@@ -6,6 +6,16 @@ class MatchesController < ApplicationController
 
   def create
     @match = Match.new(match_params)
+    if @match.save
+      redirect_to @match
+    else
+      @matches = Match.all
+      render 'new'
+    end
+  end
+
+  def show
+    @match = Match.find(params[:id])
   end
 
   private
