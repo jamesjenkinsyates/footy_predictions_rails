@@ -29,5 +29,4 @@ class SessionsController < ApplicationController
     session[:user_id] = nil
     render :text => "You've logged out!"
   end
-
 end

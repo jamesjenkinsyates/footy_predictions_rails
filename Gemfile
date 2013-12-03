@@ -30,8 +30,9 @@ gem 'jbuilder', '~> 1.2'
 
 gem 'omniauth-facebook'
 
-
 gem 'clockwork'
+
+gem "httparty"
 
 gem 'twitter-bootstrap-rails', 
         github: 'seyhunak/twitter-bootstrap-rails',

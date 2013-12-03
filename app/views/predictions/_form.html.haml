@@ -1,4 +1,5 @@
 = form_for @prediction do |f| 
+  = match.inspect
   = hidden_field_tag 'prediction[match_id]', match.id
   = match.home_team
   = f.number_field :home_prediction, size: 1, class: 'home_box'
