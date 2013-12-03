@@ -20,7 +20,7 @@ class MatchesController < ApplicationController
 
 
   def get_fixtures
-    fixtures = "http://api.statsfc.com/results.json?key=XxXxXxXxXxXxXxXxXxXxXxXxXxXxXxXxXxXxXxXx&competition=premier-league&year=2013/2014&from=2013-11-02&to=2013-11-24"
+    fixtures = "http://api.statsfc.com/results.json?key=xCblZHPfB4JuU2FhN1RFvyEShLf_LwC15R2Qhz4F&competition=premier-league&year=2013/2014&from=2013-11-02&to=2013-11-24"
     json_get(fixtures)
   end
 
@@ -32,7 +32,7 @@ class MatchesController < ApplicationController
   end
 
   def get_results
-    results = "http://api.statsfc.com/results.json?key=XxXxXxXxXxXxXxXxXxXxXxXxXxXxXxXxXxXxXxXx&competition=premier-league&year=2013/2014&from=2013-11-02&to=2013-11-24"
+    results = "http://api.statsfc.com/results.json?key=xCblZHPfB4JuU2FhN1RFvyEShLf_LwC15R2Qhz4F&competition=premier-league&year=2013/2014&from=2013-11-02&to=2013-11-24"
     json_get(results)
   end
 
