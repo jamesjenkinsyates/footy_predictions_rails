@@ -1,6 +1,7 @@
 class PredictionsController < ApplicationController
 
   def index
+    # @predictions = current_user.predictions
     @predictions = Prediction.all
   end
 
@@ -15,7 +16,7 @@ class PredictionsController < ApplicationController
       redirect_to @prediction
     else
       @matches = Match.all
-      render 'new'
+      flash.now[:error] = "Prediction Failed"
     end
   end
 
@@ -24,9 +25,9 @@ class PredictionsController < ApplicationController
     @match = @prediction.match
   end
   
-    private
-      def prediction_params
-        params.require(:prediction).permit(:match_id, :home_prediction, :away_prediction, :first_goalscorer)
-      end
+  private
+    def prediction_params
+      params.require(:prediction).permit(:user_id, :match_id, :home_prediction, :away_prediction, :first_goalscorer)
+    end
 
 end

@@ -11,3 +11,16 @@
 #   end
 
 # end
+
+
+namespace :db do
+  task clear_matches: :environment do
+    Match.all.each(&:destroy)
+  end
+end
+
+namespace :get do
+  task matches: :environment do
+    MatchFetcher.save_fixtures
+  end
+end
