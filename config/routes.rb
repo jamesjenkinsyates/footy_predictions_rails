@@ -1,14 +1,10 @@
 FootyPredictionsRails::Application.routes.draw do
 
-  get '/login', to: "sessions#new", as: :login
-
-  match '/auth/:provider/callback', :to => 'sessions#create', via: [:get, :post]
-  match '/auth/failure', :to => 'sessions#failure', via: [:get, :post]
-
-  get '/logout', :to => 'sessions#destroy', via: 'delete'
-
   resources :matches
   resources :predictions
+
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+
 
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -16,6 +12,8 @@ FootyPredictionsRails::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   get '/dashboard', to: 'dashboard#index'
+
+  root :to => "home#index"
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
