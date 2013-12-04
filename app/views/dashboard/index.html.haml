@@ -1,1 +1,25 @@
-= @predictions.past.inspect
+- @predictions.future.each do |prediction|
+
+  .prediction
+    %table
+      %tr
+        %th Teams
+        %th Scores
+
+      %tr
+        %td
+          = prediction.match.home_team
+        %td
+          = prediction.home_prediction
+      
+      %tr
+        %td
+          = prediction.match.away_team
+        %td
+          = prediction.away_prediction
+
+    .first_goal_scorer
+      %h5
+        First Goal Scorer:
+      %p
+        = prediction.first_goalscorer
