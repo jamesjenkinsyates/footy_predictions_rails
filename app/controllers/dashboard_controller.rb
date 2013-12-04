@@ -1,7 +1,7 @@
 class DashboardController < ApplicationController
 
   def index 
-    @predictions = Prediction.all#.past
+    @predictions = current_user.predictions.past
   end
 
 end

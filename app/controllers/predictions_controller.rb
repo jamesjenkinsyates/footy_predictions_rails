@@ -16,7 +16,8 @@ class PredictionsController < ApplicationController
       redirect_to @prediction
     else
       @matches = Match.all
-      flash.now[:error] = "Prediction Failed"
+      flash.now[:error] = "Prediction Failed: #{@prediction.errors.full_messages}"
+      render 'new'
     end
   end
 
