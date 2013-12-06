@@ -12,6 +12,7 @@ FootyPredictionsRails::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   get '/dashboard', to: 'dashboard#index'
+  get '/history', to: 'dashboard#history'
 
   root :to => "home#index"
 

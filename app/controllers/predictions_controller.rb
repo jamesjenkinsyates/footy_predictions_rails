@@ -1,23 +1,35 @@
 class PredictionsController < ApplicationController
 
   def index
-    # @predictions = current_user.predictions
-    @predictions = Prediction.all
+    @predictions = current_user.match_predictions
   end
 
   def new
-    @matches = Match.all
     @prediction = Prediction.new
+  end
+
+  def edit
+    @prediction = Prediction.find(params[:id])
   end
 
   def create 
     @prediction = Prediction.new(prediction_params)
     if @prediction.save
-      redirect_to @prediction
+      redirect_to new_prediction_path
     else
       @matches = Match.all
       flash.now[:error] = "Prediction Failed: #{@prediction.errors.full_messages}"
-      render 'new'
+      # render new_prediction_path
+    end
+  end
+
+  def update
+    @prediction = Prediction.find(params[:id])
+     
+    if @prediction.update(prediction_params)
+      redirect_to new_prediction_path
+    else
+      flash.now[:error] = "Prediction Edit Failed: #{@prediction.errors.full_messages}"
     end
   end
 

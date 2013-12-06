@@ -1,11 +1,11 @@
-= form_for @prediction do |f| 
-  = hidden_field_tag 'prediction[match_id]', match.id
+= form_for prediction do |f| 
+  = hidden_field_tag 'prediction[match_id]', prediction.match_id
   = hidden_field_tag "prediction[user_id]",nil,:value => current_user.id
-  = match.home_team
+  = prediction.match.home_team
   = f.number_field :home_prediction, size: 1, class: 'home_box'
   vs
   = f.number_field :away_prediction, size: 1, class: 'away_box'
-  = match.away_team 
+  = prediction.match.away_team 
   = "-- 1st Goalscorer:"
   = f.text_field :first_goalscorer, class: 'first_goal_box'
   = f.submit
