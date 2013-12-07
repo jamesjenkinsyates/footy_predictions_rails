@@ -23,7 +23,6 @@ class User < ActiveRecord::Base
                           )
       end
     end
-
   end
 
   def prediction_for(match)
