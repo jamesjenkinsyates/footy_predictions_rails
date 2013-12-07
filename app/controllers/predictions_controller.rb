@@ -15,7 +15,7 @@ class PredictionsController < ApplicationController
   def create 
     @prediction = Prediction.new(prediction_params)
     if @prediction.save
-      redirect_to new_prediction_path
+      redirect_to predictions_path
     else
       @matches = Match.all
       flash.now[:error] = "Prediction Failed: #{@prediction.errors.full_messages}"
@@ -27,7 +27,7 @@ class PredictionsController < ApplicationController
     @prediction = Prediction.find(params[:id])
      
     if @prediction.update(prediction_params)
-      redirect_to new_prediction_path
+      redirect_to predictions_path
     else
       flash.now[:error] = "Prediction Edit Failed: #{@prediction.errors.full_messages}"
     end

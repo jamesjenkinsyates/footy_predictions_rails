@@ -1,6 +1,6 @@
 = form_for prediction do |f| 
   = hidden_field_tag 'prediction[match_id]', prediction.match_id
-  = hidden_field_tag "prediction[user_id]",nil,:value => current_user.id
+  = hidden_field_tag 'prediction[user_id]',nil,:value => current_user.id
   = prediction.match.home_team
   = f.number_field :home_prediction, size: 1, class: 'home_box'
   vs
