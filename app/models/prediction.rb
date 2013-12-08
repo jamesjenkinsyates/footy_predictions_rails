@@ -11,7 +11,10 @@ class Prediction < ActiveRecord::Base
   scope :future, -> {joins(:match).where('match_date_time > ?', DateTime.now)}
 
   def assign_points
-    points.update = score_points(self.home_prediction, self.away_prediction, self.match.home_score, self.match.away_score)
+    if self.match.match_finished?
+      points = score_points(self.home_prediction, self.away_prediction, self.match.home_score, self.match.away_score)
+      self.update(points: points)
+    end
   end
 
   def score_points predicted1, predicted2, actual1, actual2

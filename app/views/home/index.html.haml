@@ -1,1 +1,33 @@
-Hello!
+%html.full{lang: "en"}
+  %body
+    %nav.navbar.navbar-fixed-bottom.navbar-inverse{role: "navigation"}
+      .container
+        .navbar-header
+          %button.navbar-toggle{"data-target" => ".navbar-ex1-collapse", "data-toggle" => "collapse", type: "button"}
+            %span.sr-only Toggle navigation
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          %a.navbar-brand Football Predictions
+        / Collect the nav links, forms, and other content for toggling
+        .collapse.navbar-collapse.navbar-ex1-collapse
+          %ul.nav.navbar-nav
+            - if user_signed_in?
+              %li
+                = link_to('Logout', destroy_user_session_path,  :method=>'delete')
+            - else
+              %li
+                = link_to('Sign in', new_user_session_path)              
+            %li
+              %a{href: "#services"} Services
+            %li
+              %a{href: "#contact"} Contact
+        / /.navbar-collapse
+      / /.container
+    .container
+      = bootstrap_flash
+      .row
+        .col-lg-6.col-sm-12
+          %h1 The Big Picture
+          %p Here's a spot for some awesome intro text. Check out the fixed nav at the bottom!
+          %p Set the background image in the CSS, pair it with some cool fonts, and you will have a rockin' start to a cool portfolio.

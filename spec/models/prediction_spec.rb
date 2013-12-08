@@ -43,7 +43,7 @@ describe Prediction do
       match = FactoryGirl.create(:match)
       match.stub(:match_finished?) { true }
       prediction = FactoryGirl.create(:prediction)
-      prediction.score_points(prediction.home_prediction, prediction.away_prediction, match.home_score, match.away_score)
+      prediction.assign_points
       expect(prediction.points).to eq 1
     end
 
