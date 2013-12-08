@@ -29,6 +29,16 @@
       .row
         .col-lg-6.col-sm-12
           .intro
-            %h1 The Big Picture
-            %p Here's a spot for some awesome intro text. Check out the fixed nav at the bottom!
-            %p Set the background image in the CSS, pair it with some cool fonts, and you will have a rockin' start to a cool portfolio.
+            %h1 Football Predictions
+            %p Welcome to the world's only game like it. :/
+            %p Join in and submit your predictions, you will earn points for guessing the correct scores and goalscorers!
+      .row2
+        .col-md-3
+        .col.md-6
+          .sign-up
+            %p
+              = link_to 'Register with your email', new_user_registration_path 
+              or 
+              = link_to image_tag('XLfacebook.png'), user_omniauth_authorize_path(:facebook)
+            
+        .col-md-3
