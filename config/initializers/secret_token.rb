@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-FootyPredictionsRails::Application.config.secret_key_base = '2759c579241b3dc75bc4bff36b727762160b063a431d00ebfd987c866b720f64b1a19a25deba73c53e5e1be4a1ef7913a056658434778cc83b0c00dff5421b70'
+FootyPredictionsRails::Application.config.secret_key_base = ENV['RAILS_SECRET']

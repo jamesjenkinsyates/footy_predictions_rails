@@ -31,6 +31,7 @@ gem 'jbuilder', '~> 1.2'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'devise'
+gem 'dotenv-rails'
 
 gem 'clockwork'
 

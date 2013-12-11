@@ -25,9 +25,11 @@ class User < ActiveRecord::Base
     end
   end
 
+  
   def prediction_for(match)
     predictions.find_by(match: match)
   end
+  alias_method :has_predicted?, :prediction_for
 
   def match_predictions
     Match.all.map do |match|
@@ -39,7 +41,8 @@ class User < ActiveRecord::Base
     end
   end
 
-  alias_method :has_predicted?, :prediction_for
-
+  def user_points
+    
+  end
 
 end

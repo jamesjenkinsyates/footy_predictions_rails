@@ -40,7 +40,7 @@ class PredictionsController < ApplicationController
   
   private
     def prediction_params
-      params.require(:prediction).permit(:user_id, :match_id, :home_prediction, :away_prediction, :first_goalscorer)
+      params.require(:prediction).permit(:user_id, :match_id, :home_prediction, :away_prediction, :first_goalscorer, :double)
     end
 
 end

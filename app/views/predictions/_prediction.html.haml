@@ -8,4 +8,6 @@
   = prediction.match.away_team 
   = "-- 1st Goalscorer:"
   = f.text_field :first_goalscorer, class: 'first_goal_box'
+  Double?:
+  = radio_button_tag(:double, true)
   = f.submit
