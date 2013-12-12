@@ -7,6 +7,20 @@ class Prediction < ActiveRecord::Base
 
   scope :past, -> {joins(:match).where('match_date_time < ?', DateTime.now)}
   scope :future, -> {joins(:match).where('match_date_time > ?', DateTime.now)}
+  scope :this_season, -> do
+    if Time.now.month > 6
+      start_year = Time.now.year
+    else
+      start_year = 1.year.ago.year
+    end
+    end_year = start_year + 1
+
+    startpoint = DateTime.new(start_year, 7, 1)
+    endpoint = DateTime.new(end_year, 6, 1)
+
+    joins(:match).where('match_date_time < ? AND match_date_time > ?', endpoint, startpoint)
+  end
+
 
   def assign_points
     if self.match.match_finished?

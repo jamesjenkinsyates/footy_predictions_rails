@@ -35,7 +35,7 @@ gem 'dotenv-rails'
 
 gem 'clockwork'
 
-gem "httparty"
+gem 'httparty'
 
 gem 'twitter-bootstrap-rails', 
         github: 'seyhunak/twitter-bootstrap-rails',
@@ -49,11 +49,12 @@ end
 group :test, :development do
   gem 'rspec-rails'
   gem 'capybara'
-  gem 'cucumber-rails', :require => false
+  gem 'cucumber-rails', require: false
   gem 'database_cleaner'
   gem 'shoulda-matchers'
   gem 'timecop'
   gem 'factory_girl'
+  gem 'brakeman', require: false
 end
 
 # Use ActiveModel has_secure_password

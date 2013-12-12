@@ -24,3 +24,4 @@ namespace :get do
     MatchFetcher.save_fixtures
   end
 end
+

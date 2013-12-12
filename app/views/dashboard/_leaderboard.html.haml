@@ -1,0 +1,13 @@
+.leaderboard
+  %table
+    %th
+      %tr
+        %th #
+        %th User
+        %th Points
+    - @users.each_with_index do |user, i|
+      %tbody
+        %tr
+          %td= i + 1
+          %td= user.email
+          %td= user.total_points
