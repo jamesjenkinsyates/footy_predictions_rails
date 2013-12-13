@@ -1,7 +1,6 @@
-- @predictions.each do |prediction|
-
-  .prediction
-    %table
+.prediction
+  %table
+    %th
       %tr
         %th Date
         %th Home
@@ -13,25 +12,26 @@
         %th 
         %th Actual Results
 
-
-      %tr
-        %td
-          = prediction.match.match_date_time.strftime('%b %d %Y')
-        %td
-          = prediction.match.home_team
-        %td
-          = prediction.home_prediction
-        %td
-          = prediction.match.away_team
-        %td
-          = prediction.away_prediction
-        %td
-          = prediction.first_goalscorer
-        %td
-          2
-        %td
-          2 
-          / # = prediction.match.home_score
-        %td
-          2 
-          / # = prediction.match.away_score
+    - @predictions.past.each do |prediction|
+      %tbody
+        %tr
+          %td
+            = prediction.match.match_date_time.strftime('%b %d %Y')
+          %td
+            = prediction.match.home_team
+          %td
+            = prediction.home_prediction
+          %td
+            = prediction.match.away_team
+          %td
+            = prediction.away_prediction
+          %td
+            = prediction.first_goalscorer
+          %td
+            2
+          %td
+            2 
+            / # = prediction.match.home_score
+          %td
+            2 
+            / # = prediction.match.away_score
