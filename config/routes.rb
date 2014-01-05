@@ -3,7 +3,13 @@ FootyPredictionsRails::Application.routes.draw do
   resources :matches
   resources :predictions
 
-  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
+  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }, path_names: { sign_up: "register" }
+
+  devise_scope :user do
+    get "register", to: "devise/registrations#new"
+    get "login", to: "devise/sessions#new"
+    get "logout", to: "devise/sessions#destroy"
+  end
 
 
 
@@ -14,8 +20,13 @@ FootyPredictionsRails::Application.routes.draw do
   get '/dashboard', to: 'dashboard#index'
   get '/history', to: 'dashboard#history'
 
-  root to: "home#index"
 
+
+
+  authenticated :user do
+    redirect("/dashboard")
+  end
+    root to: "home#index"
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

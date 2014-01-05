@@ -1,2 +1,27 @@
-= render 'leaderboard'
-= render 'weeks_predictions'
+.col-md-8.col-xs-12.col-lg-8.dashboard-main-box
+  - if current_user.uid != nil
+    .circular-image
+      %img{src: "https://graph.facebook.com/#{current_user.uid}/picture?width=200&height=200"}
+  .welcome
+    %h1 
+      Welcome
+      = current_user.name
+
+  %ul.nav.nav-tabs.dash-nav
+    %li.active
+      %a{"data-toggle" => "tab", :href => "#predictions"} Week's Predictions
+    %li
+      %a{"data-toggle" => "tab", :href => "#results"} Results
+    %li
+      %a{"data-toggle" => "tab", :href => "#others"} Other's Predictions
+
+  .tab-content
+    #predictions.tab-pane.fade.in.active
+      = render 'weeks_predictions'
+    #results.tab-pane.fade
+      %h4 Your results - Coming soon
+    #others.tab-pane.fade
+      %h4 Other Predictions - Coming less soon
+
+.col-md-4.col-xs-6.col-lg-4.leaderboard-box
+  = render 'leaderboard'

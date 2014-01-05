@@ -4,6 +4,8 @@ class Prediction < ActiveRecord::Base
 
   validates :match_id, uniqueness: {scope: :user_id}, presence: true
   validates :user_id, presence: true
+  validates :home_prediction, presence: true, inclusion: { in: 0..9 }
+  validates :away_prediction, presence: true, inclusion: { in: 0..9 }
 
   scope :past, -> {joins(:match).where('match_date_time < ?', DateTime.now)}
   scope :future, -> {joins(:match).where('match_date_time > ?', DateTime.now)}
@@ -24,40 +26,61 @@ class Prediction < ActiveRecord::Base
 
   def assign_points
     if self.match.match_finished?
-      points = score_points(self.home_prediction, self.away_prediction, self.match.home_score, self.match.away_score)
+      points = score_points
       self.update(points: points)
     end
   end
 
-  def score_points predicted1, predicted2, actual1, actual2
-    prediction = [predicted1, predicted2]
-    actual = [actual1, actual2]
+  def score_points
     return 3 if exact_match?(prediction, actual)
     return 1 if result_correct?(prediction, actual)
     0
   end
 
+  def prediction
+    [self.home_prediction, self.away_prediction]
+  end
+
+  def actual
+    [self.match.home_score, self.match.away_score]
+  end
+
   def exact_match? prediction, actual
-    (prediction[0] == actual[0]) && (prediction[1] == actual[1])
+    (prediction[0] == actual[0]) and (prediction[1] == actual[1])
   end
 
   def result_correct? prediction, actual
-    return true if draw?(*prediction) && draw?(*actual)
-    return true if away_win?(*prediction) && away_win?(*actual)
-    return true if home_win?(*prediction) && home_win?(*actual)
-    false
+    correct_draw_prediction?(prediction, actual) or 
+    correct_away_win_prediction?(prediction, actual) or
+    correct_home_win_prediction?(prediction, actual)
   end
 
-  def draw? home, away
-    home-away == 0
+  def correct_draw_prediction? prediction, actual
+    draw?(*prediction) and draw?(*actual)
   end
 
-  def home_win? home, away
-    home-away > 0
+  def correct_away_win_prediction? prediction, actual
+    away_win?(*prediction) and away_win?(*actual)
   end
 
-  def away_win? home, away
-    home-away < 0
+  def correct_home_win_prediction? prediction, actual
+    home_win?(*prediction) and home_win?(*actual)
+  end
+
+  def draw? home_score, away_score
+    score_analyser(home_score, away_score) == 0
+  end
+
+  def home_win? home_score, away_score
+    score_analyser(home_score, away_score) > 0
+  end
+
+  def away_win? home_score, away_score
+    score_analyser(home_score, away_score) < 0
+  end
+
+  def score_analyser home_score, away_score
+    home_score - away_score
   end
 
 end

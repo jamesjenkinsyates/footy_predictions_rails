@@ -1,13 +1,16 @@
 .weeks_predictions
-  %table
-    %th 
-      %tr
-        %th #
-        %th User
-        %th Points
-    - @users.each_with_index do |user, i|
-      %tbody
+  .table.table-striped.col-lg-8
+    %table
+      %th
         %tr
-          %td= i + 1
-          %td BING
-          %td= user.total_points
+          %th Date and Time
+          %th Home
+          %th Score
+          %th 
+          %th
+          %th Away
+          %th 1st Goalscorer
+          %th 
+      %tbody
+        = render @predictions
+          

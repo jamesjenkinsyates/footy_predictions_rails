@@ -1,3 +1,53 @@
 // Place all the styles related to the Dashboard controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.circular-image img {
+  width: 76px;
+  height: 76px;
+  -webkit-border-radius: 38px;
+  -moz-border-radius: 38px;
+  -ms-border-radius: 38px;
+  -o-border-radius: 38px;
+  border-radius: 38px;
+  display: inline;
+  float: left;
+  margin-right: 20px;
+}
+
+.welcome {
+  // display: inline;
+  // position: ;
+  float: left;
+  // margin-bottom: 34px;
+}
+
+.home_box {
+  width: 25px;
+}
+
+.away_box {
+  width: 25px;
+}
+
+.first_goal_box {
+  width: 120px;
+}
+
+.leaderboard {
+  float: right;
+}
+
+.dashboard-main-box {
+  padding-right: 0px;
+  padding-left:  0px;
+}
+
+.leaderboard-box {
+  padding-right: 0px;
+  padding-left:  0px;
+}
+
+.dash-nav {
+  padding-top: 95px;
+}

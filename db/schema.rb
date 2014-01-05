@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 20131207162413) do
     t.string   "provider"
     t.string   "uid"
     t.string   "name"
-    t.integer  "total_points"
+    t.integer  "total_points",           default: 0
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
