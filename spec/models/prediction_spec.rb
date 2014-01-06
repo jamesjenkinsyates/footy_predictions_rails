@@ -42,14 +42,60 @@ describe Prediction do
 
   end
 
-  context "assigning points" do
+  context "assigning points when match has finished" do
+
+    before(:each) do
+      match = FactoryGirl.create(:match)
+    end
 
     it "assigns one point to a prediction if Home win correctly predicted but not exact score" do
-      match = FactoryGirl.create(:match)
-      match.stub(:match_finished?) { true }
       prediction = FactoryGirl.create(:prediction)
+      prediction.match.stub(:match_finished?) { true }
       prediction.assign_points
       expect(prediction.points).to eq 1
+    end
+
+    it "assigns three points to a prediction if score and results are correctly guessed" do
+      prediction = FactoryGirl.create(:correct_prediction)
+      prediction.match.stub(:match_finished?) { true }
+      prediction.assign_points
+      expect(prediction.points).to eq 3
+    end
+
+    it "assigns zero points to a prediction if score and results are both incorrectly guessed" do
+      prediction = FactoryGirl.create(:incorrect_prediction)
+      prediction.match.stub(:match_finished?) { true }
+      prediction.assign_points
+      expect(prediction.points).to eq 0
+    end
+
+  end
+
+  context "does not assign points when match has not finished" do
+
+    before(:each) do
+      match = FactoryGirl.create(:match)
+    end
+
+    it "does not assign one point to a prediction if home win correctly predicted but not exact score" do
+      prediction = FactoryGirl.create(:prediction)
+      prediction.match.stub(:match_finished?) { false }
+      prediction.assign_points
+      expect(prediction.points).to eq nil
+    end
+
+    it "does not assign three points to a prediction if score and results are correctly guessed" do
+      prediction = FactoryGirl.create(:correct_prediction)
+      prediction.match.stub(:match_finished?) { false }
+      prediction.assign_points
+      expect(prediction.points).to eq nil
+    end
+
+    it "does not assign zero points to a prediction if score and results are both incorrectly guessed" do
+      prediction = FactoryGirl.create(:incorrect_prediction)
+      prediction.match.stub(:match_finished?) { false }
+      prediction.assign_points
+      expect(prediction.points).to eq nil
     end
 
   end

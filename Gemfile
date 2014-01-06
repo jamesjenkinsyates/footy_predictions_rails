@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby "2.0.0"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.1'
@@ -31,6 +32,7 @@ gem 'jbuilder', '~> 1.2'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'devise'
+
 gem 'dotenv-rails'
 
 gem 'clockwork'
@@ -57,6 +59,10 @@ group :test, :development do
   gem 'brakeman', require: false
 end
 
+group :production do
+  gem 'rails_12factor'
+end
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
@@ -68,3 +74,5 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+

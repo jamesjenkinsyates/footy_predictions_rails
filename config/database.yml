@@ -55,7 +55,6 @@ production:
   encoding: unicode
   database: footy_predictions_rails_production
   pool: 5
-  username: footy_predictions_rails
   password:
 
 cucumber:
