@@ -14,6 +14,8 @@
       %a{"data-toggle" => "tab", :href => "#results"} Results
     %li
       %a{"data-toggle" => "tab", :href => "#others"} Other's Predictions
+    %li
+      %a{"data-toggle" => "tab", :href => "#groups"} Groups
 
   .tab-content
     #predictions.tab-pane.fade.in.active
@@ -22,6 +24,8 @@
       %h4 Your results - Coming soon
     #others.tab-pane.fade
       %h4 Other Predictions - Coming less soon
+    #groups.tab-pane.fade
+      %h4 Groups - Almost never coming
 
 .col-md-4.col-xs-6.col-lg-4.leaderboard-box
   = render 'leaderboard'
