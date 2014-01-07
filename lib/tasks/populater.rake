@@ -23,5 +23,11 @@ namespace :get do
   task matches: :environment do
     MatchFetcher.save_fixtures
   end
+  task results: :environment do
+    MatchFetcher.save_results
+  end
+  task scorers: :environment do
+    ScorerFetcher.save_scorers
+  end
 end
 
