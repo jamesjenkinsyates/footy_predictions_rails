@@ -40,6 +40,15 @@ class User < ActiveRecord::Base
       end
     end
   end
+  
+  def past_predictions
+    past_predictions = Match.all.map do |match|
+      if has_predicted?(match) && match.match_finished?
+        prediction_for(match)
+      end
+    end
+    return past_predictions.flatten
+  end
 
   def user_points
     self.total_points = Prediction.this_season.sum(:points)

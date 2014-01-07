@@ -6,6 +6,7 @@ class DashboardController < ApplicationController
     # @predictions = current_user.predictions
     # @predictions = Prediction.new
     @predictions = current_user.match_predictions
+    @results = current_user.past_predictions
 
     @users = User.all.sort_by(&:total_points)
   end
