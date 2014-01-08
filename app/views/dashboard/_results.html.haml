@@ -1,7 +1,6 @@
-%h4 Your results - Coming soon
-
-- if !@results.empty? 
-  = @results.inspect
+%h4 Your results
+- if @results.empty? 
+  You currently have no results.
 - else
   - @results.each do |prediction|
     .result

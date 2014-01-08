@@ -47,7 +47,7 @@ class User < ActiveRecord::Base
         prediction_for(match)
       end
     end
-    return past_predictions.flatten
+    return past_predictions.compact
   end
 
   def user_points

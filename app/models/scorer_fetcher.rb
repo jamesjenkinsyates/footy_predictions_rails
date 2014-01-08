@@ -2,7 +2,7 @@ module ScorerFetcher
   def self.save_scorers
     json = get_scorers
     json.each do |scorer|
-      Scorer.where(player_id: scorer["player_id"], name: scorer["playershort"], team: scorer["teamshort"], team_id: scorer["team_id"]).find_or_create_by(player_id: scorer["player_id"])
+      Scorer.where(player_id: scorer["player_id"], name: scorer["playershort"], team: scorer["teamshort"], team_id: scorer["team_id"], goals: scorer["goals"]).find_or_create_by(player_id: scorer["player_id"])
     end
   end
 
