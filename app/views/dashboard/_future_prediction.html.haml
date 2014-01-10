@@ -16,7 +16,7 @@
 
       %tr
         %td
-          = prediction.match.match_date_time.strftime('%b %d %Y')
+          = prediction.match.match_date_time.strftime("%a %e %b %H:%M")
         %td
           = prediction.match.home_team
         %td
@@ -28,7 +28,7 @@
         %td
           = prediction.first_goalscorer
         %td
-          2
+          = prediction.match.
         %td
           2 
           / # = prediction.match.home_score

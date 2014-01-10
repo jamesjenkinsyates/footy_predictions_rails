@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
   has_many :predictions
+  belongs_to :group
 
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
@@ -39,6 +40,15 @@ class User < ActiveRecord::Base
         Prediction.new(match: match, user: self)
       end
     end
+  end
+  
+  def past_predictions
+    past_predictions = Match.all.map do |match|
+      if has_predicted?(match) && match.match_finished?
+        prediction_for(match)
+      end
+    end
+    return past_predictions.compact
   end
 
   def user_points

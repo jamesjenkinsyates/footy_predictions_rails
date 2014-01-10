@@ -11,7 +11,7 @@ module MatchFetcher
   def self.save_fixtures
     json = get_fixtures
     json.each do |fixture|
-      Match.where(api_match_id: fixture["id"].to_i, match_date_time: fixture["date"], home_team: fixture["homeshort"], away_team: fixture["awayshort"]).find_or_create_by(api_match_id: fixture["id"])
+      Match.where(api_match_id: fixture["id"].to_i, match_date_time: fixture["date"], api_home_id: fixture["home_id"], home_team: fixture["homeshort"], api_away_id: fixture["away_id"], away_team: fixture["awayshort"]).find_or_create_by(api_match_id: fixture["id"])
     end
   end
 

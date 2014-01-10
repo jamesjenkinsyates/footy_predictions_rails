@@ -8,22 +8,16 @@
     %td vs
     %td= f.text_field :away_prediction, size: 1, class: 'away_box'
     %td= prediction.match.away_team 
-    %td= f.text_field :first_goalscorer, class: 'first_goal_box typeahead'
+    %td= f.text_field :first_goalscorer, class: 'first_goal_box', autocomplete: "off"
     %td= f.submit
     
     :javascript
-      $('.typeahead').typeahead([
+      $('.first_goal_box').typeahead([
         {
-          name: 'nba-teams',
-          local: ['timtrueman', 'JakeHarding', 'vskarich'],
-          prefetch: 'http://api.statsfc.com/top-scorers.json?key=iBmMBLP17gwhhpqtgZlM9Cf3MGIhijoQJ7Z9t0AT&competition=premier-league&year=2013/2014&team=newcastle-united',
-          header: '<h3 class="league-name">Home Team</h3>'
-        },
-        {
-          name: 'nhl-teams',
-          prefetch: 'http://api.statsfc.com/top-scorers.json?key=iBmMBLP17gwhhpqtgZlM9Cf3MGIhijoQJ7Z9t0AT&competition=premier-league&year=2013/2014&team=liverpool',
-          header: '<h3 class="league-name">Away Team</h3>'
+          name: 'Scorers',
+          prefetch: './dashboard.json'
         }
+
       ]);
     
     

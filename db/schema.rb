@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20140107030505) do
+=======
+ActiveRecord::Schema.define(version: 20140108233452) do
+>>>>>>> 8b66797b4da9698cfac378caf431b69111bd6ca8
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "groups", force: true do |t|
+    t.string   "name"
+    t.integer  "average_points"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "matches", force: true do |t|
     t.string   "home_team"
@@ -26,6 +37,8 @@ ActiveRecord::Schema.define(version: 20140107030505) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "api_match_id"
+    t.integer  "api_home_id"
+    t.integer  "api_away_id"
   end
 
   create_table "predictions", force: true do |t|
@@ -47,6 +60,7 @@ ActiveRecord::Schema.define(version: 20140107030505) do
     t.integer  "player_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "goals"
   end
 
   create_table "users", force: true do |t|
@@ -66,6 +80,7 @@ ActiveRecord::Schema.define(version: 20140107030505) do
     t.string   "uid"
     t.string   "name"
     t.integer  "total_points",           default: 0
+    t.integer  "group_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
