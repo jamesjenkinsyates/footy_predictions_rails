@@ -44,11 +44,6 @@ class User < ActiveRecord::Base
   def user_points
     self.total_points = Prediction.this_season.sum(:points)
     save
-    # total_points = self.total_points
-    # x = 
-    # new_total_points = total_points + x
-    # self.update(total_points: new_total_points)
-
   end
 
 end
