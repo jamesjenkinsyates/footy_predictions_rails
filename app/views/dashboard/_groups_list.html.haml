@@ -1,5 +1,27 @@
 %h4 Groups - Coming less soon
 
 = link_to "New Group", new_group_path
+<br>
+You can only be in one group at a time.
+<br><br>
+Your current group:
+= current_user.group.name
+<br><br>
+.table.table-striped
+  %table
+    %th
+      Groups
+      %tr
+        %th Group
+        %th Members
+        %th Average Points
+        %th
+    - @groups.map do |group| 
+      %tbody
+        %tr
+          %td= group.name
+          %td= group.member_count
+          %td= group.average_points
+          %td= button_to "Join", { action: "join_group", id: group.id }, method: :post
 
-= @groups.map {|group| group.name}
+          

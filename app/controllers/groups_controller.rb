@@ -5,7 +5,7 @@ class GroupsController < ApplicationController
     if @group.save
       redirect_to dashboard_path
     else
- #     flash.now[:error] = "Group Creation Failed: #{@group.errors.full_messages}"
+      flash.now[:error] = "Group Creation Failed: #{@group.errors.full_messages}"
     end
   end
   

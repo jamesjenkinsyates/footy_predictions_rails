@@ -19,6 +19,8 @@ FootyPredictionsRails::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   get '/dashboard', to: 'dashboard#index'
+  post '/dashboard', to: 'dashboard#index'
+  post 'join_group', to: 'dashboard#join_group', as: 'join_group'
   get '/history', to: 'dashboard#history'
 
 
