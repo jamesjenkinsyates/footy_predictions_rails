@@ -127,6 +127,7 @@ GEM
     multi_test (0.0.3)
     multi_xml (0.5.5)
     multipart-post (1.2.0)
+    newrelic_rpm (3.7.1.182)
     nokogiri (1.6.1)
       mini_portile (~> 0.5.0)
     oauth2 (0.8.1)
@@ -248,6 +249,7 @@ DEPENDENCIES
   httparty
   jbuilder (~> 1.2)
   jquery-rails
+  newrelic_rpm
   omniauth
   omniauth-facebook
   pg
