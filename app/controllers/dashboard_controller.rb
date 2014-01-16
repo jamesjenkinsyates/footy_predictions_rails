@@ -8,6 +8,7 @@ class DashboardController < ApplicationController
     @others_predictions = others_predictions
     @users = User.all.sort_by(&:total_points).reverse
     @groups = Group.all
+    @users_group = user_group(current_user)
   end
   
   def join_group
@@ -31,4 +32,12 @@ class DashboardController < ApplicationController
         end
       end
     end
+  
+  def user_group user
+    if user.group != nil
+      return "Your current group: #{user.group.name}"
+    else
+      return "You are not currently a member of a group"
+    end
+  end
 end
