@@ -5,7 +5,7 @@ class DashboardController < ApplicationController
     @predictions = current_user.match_predictions
     @results = current_user.past_predictions
     @scorers = Scorer.all.map { |scorer| scorer.name }
-    @others_predictions = others_predictions
+    @others_predictions = group_members_with_predictions
     @users = User.all.sort_by(&:total_points).reverse
     @groups = Group.all
     @users_group = user_group(current_user)
@@ -23,13 +23,15 @@ class DashboardController < ApplicationController
   end
   
   private
-    def others_predictions
-      User.all.map do |user| 
-        unless user == current_user
-          user.predictions.each do |prediction|
-            prediction
-          end  
+    def group_members_with_predictions
+      user_group = current_user.group_id
+      users_in_group = User.where(group_id: user_group)
+      users_array = users_in_group.map do |user| 
+        user
+        predictions_array = user.predictions.map do |prediction| 
+          prediction
         end
+        [user, predictions_array]
       end
     end
   
