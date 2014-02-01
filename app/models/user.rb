@@ -33,13 +33,14 @@ class User < ActiveRecord::Base
   alias_method :has_predicted?, :prediction_for
 
   def match_predictions
-    Match.all.map do |match|
-      if has_predicted?(match)
+    weeks_predictions = Match.all.map do |match|
+      if has_predicted?(match) && !match.match_finished?
         prediction_for(match)
       else
         Prediction.new(match: match, user: self)
       end
     end
+    return weeks_predictions
   end
   
   def past_predictions

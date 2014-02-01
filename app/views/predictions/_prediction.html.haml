@@ -8,17 +8,14 @@
     %td vs
     %td= f.text_field :away_prediction, size: 1, class: 'away_box'
     %td= prediction.match.away_team 
-    %td= f.text_field :first_goalscorer, class: 'first_goal_box', autocomplete: "off"
+    %td= f.text_field :first_goalscorer, class: 'first_goal_box', autocomplete: "off", id: nil
     %td= f.submit
     
-    :javascript
-      $('.first_goal_box').typeahead([
-        {
-          name: 'Scorers',
-          prefetch: './dashboard.json'
-        }
-      ]);
+:javascript
+  //$('.first_goal_box').typeahead([
+  //  {
+    //  name: 'Scorers',
+      //prefetch: './dashboard.json'
+    //}
+  //]);
     
-    
-    / %td Double?:
-    / %td= radio_button_tag(:double, true)
