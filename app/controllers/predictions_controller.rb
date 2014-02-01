@@ -2,9 +2,9 @@ class PredictionsController < ApplicationController
 
   before_filter :authenticate_user!
 
-  def index
-    @predictions = current_user.match_predictions
-  end
+  # def index
+  #   @predictions = current_user.match_predictions
+  # end
 
   def new
     @prediction = Prediction.new
@@ -14,20 +14,20 @@ class PredictionsController < ApplicationController
     @prediction = Prediction.find(params[:id])
   end
 
-  def create 
+  def create
+    raise params.inspect
     @prediction = Prediction.new(prediction_params)
     if @prediction.save
       redirect_to dashboard_path
     else
       @matches = Match.all
-      flash.now[:error] = "Prediction Failed: #{@prediction.errors.full_messages}"
-      # render new_prediction_path
+      redirect_to dashboard_path
+      flash[:error] = "Prediction Failed: #{@prediction.errors.full_messages}"
     end
   end
 
   def update
     @prediction = Prediction.find(params[:id])
-     
     if @prediction.update(prediction_params)
       redirect_to dashboard_path
     else

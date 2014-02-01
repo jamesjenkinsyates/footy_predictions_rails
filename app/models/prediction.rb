@@ -6,6 +6,7 @@ class Prediction < ActiveRecord::Base
   validates :user_id, presence: true
   validates :home_prediction, presence: true, inclusion: { in: 0..9 }
   validates :away_prediction, presence: true, inclusion: { in: 0..9 }
+  validates :first_goalscorer, presence: true
 
   scope :past, -> {joins(:match).where('match_date_time < ?', DateTime.now)}
   scope :future, -> {joins(:match).where('match_date_time > ?', DateTime.now)}
