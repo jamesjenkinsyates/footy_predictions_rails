@@ -2,10 +2,6 @@ class PredictionsController < ApplicationController
 
   before_filter :authenticate_user!
 
-  # def index
-  #   @predictions = current_user.match_predictions
-  # end
-
   def new
     @prediction = Prediction.new
   end
@@ -16,6 +12,7 @@ class PredictionsController < ApplicationController
 
   def create
     @prediction = Prediction.new(prediction_params)
+    
     if @prediction.save
       redirect_to dashboard_path
     else

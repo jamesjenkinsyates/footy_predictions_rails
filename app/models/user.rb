@@ -34,13 +34,13 @@ class User < ActiveRecord::Base
 
   def match_predictions
     weeks_predictions = Match.all.map do |match|
-      if has_predicted?(match) && !match.match_finished?
+      if has_predicted?(match) && !match.match_started?
         prediction_for(match)
-      else
+      elsif !has_predicted?(match) && !match.match_started?
         Prediction.new(match: match, user: self)
       end
     end
-    return weeks_predictions
+    return weeks_predictions.compact
   end
   
   def past_predictions

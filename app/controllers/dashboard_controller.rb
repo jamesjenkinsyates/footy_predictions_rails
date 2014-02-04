@@ -13,8 +13,7 @@ class DashboardController < ApplicationController
   
   def join_group
     group = Group.find(params[:id])
-    user = current_user
-    user.update(group_id: group.id)
+    current_user.update(group_id: group.id)
     redirect_to dashboard_path
   end
       

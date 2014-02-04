@@ -7,6 +7,8 @@ class Prediction < ActiveRecord::Base
   validates :home_prediction, presence: true, inclusion: { in: 0..9 }
   validates :away_prediction, presence: true, inclusion: { in: 0..9 }
   validates :first_goalscorer, presence: true
+  # validate :time_cannot_be_after_match_time
+
 
   scope :past, -> {joins(:match).where('match_date_time < ?', DateTime.now)}
   scope :future, -> {joins(:match).where('match_date_time > ?', DateTime.now)}
@@ -24,6 +26,11 @@ class Prediction < ActiveRecord::Base
     joins(:match).where('match_date_time < ? AND match_date_time > ?', endpoint, startpoint)
   end
 
+  # def time_cannot_be_after_match_time
+  #   if created_at >= self.match.match_date_time
+  #     errors.add("Match has already started")
+  #   end
+  # end
 
   def assign_points
     if self.match.match_finished?
