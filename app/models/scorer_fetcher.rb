@@ -16,3 +16,4 @@ module ScorerFetcher
       JSON.parse HTTParty.get(url).response.body
     end
 end
+

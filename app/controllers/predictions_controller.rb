@@ -15,7 +15,6 @@ class PredictionsController < ApplicationController
   end
 
   def create
-    raise params.inspect
     @prediction = Prediction.new(prediction_params)
     if @prediction.save
       redirect_to dashboard_path
