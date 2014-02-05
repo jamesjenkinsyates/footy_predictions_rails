@@ -9,6 +9,25 @@ describe Prediction do
       match: Match.new(home_score: actual, away_score: actual2))
   end
 
+  context "time_cannot_be_after_match_time" do
+    describe "created at is after match time" do
+      before(:each) do
+        match = FactoryGirl.create(:match, :match_date_time => 1.day.ago)
+      end
+      def create_prediction
+        FactoryGirl.create(:prediction)
+      end
+      it "should not create a Prediction" do
+        expect(create_prediction).to be false
+      end
+    end
+    describe "created at is before match time" do
+      it "should create a Prediction" do
+        
+      end
+    end
+  end
+  
   context "matching the exact score" do
     it "returns 3 when predicted score (1-0) match actual score (1-0)" do
       expect(create_prediction_with(1,0,1,0).score_points).to be 3
