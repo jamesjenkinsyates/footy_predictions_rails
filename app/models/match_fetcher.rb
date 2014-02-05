@@ -16,7 +16,10 @@ module MatchFetcher
   end
 
   def self.get_results
-    results = "http://api.statsfc.com/results.json?key=#{ENV['STATS_FC_SECRET']}&competition=premier-league&from=2013-11-02&to=2013-11-24"
+    todays_date = Time.now.to_date
+    date_from = (todays_date - 7.days).strftime('%Y-%m-%d')
+    date_to = todays_date.strftime('%Y-%m-%d')
+    results = "http://api.statsfc.com/results.json?key=#{ENV['STATS_FC_SECRET']}&competition=premier-league&from=#{date_from}&to=#{date_to}"
     json_get(results)
   end
 
