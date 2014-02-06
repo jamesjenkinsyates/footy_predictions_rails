@@ -14,6 +14,7 @@ class PredictionsController < ApplicationController
     @prediction = Prediction.new(prediction_params)
     
     if @prediction.save
+      @prediction.user.use_double_credit if @prediction.double
       redirect_to dashboard_path
     else
       @matches = Match.all
@@ -24,7 +25,11 @@ class PredictionsController < ApplicationController
 
   def update
     @prediction = Prediction.find(params[:id])
+    current_double_status = @prediction.double
     if @prediction.update(prediction_params)
+      # require 'pry'
+      # binding.pry
+      @prediction.user.use_double_credit if @prediction.double && !current_double_status
       redirect_to dashboard_path
     else
       redirect_to dashboard_path

@@ -4,7 +4,7 @@ class CreatePredictions < ActiveRecord::Migration
       t.integer :home_prediction
       t.integer :away_prediction
       t.string :first_goalscorer
-      t.boolean :double
+      t.boolean :double, default: false
       t.integer :user_id
       t.integer :match_id
 

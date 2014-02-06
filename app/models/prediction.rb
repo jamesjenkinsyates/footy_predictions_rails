@@ -9,6 +9,7 @@ class Prediction < ActiveRecord::Base
   validates :first_goalscorer, presence: true
   validate :time_cannot_be_after_match_time
   validate :scorer_is_formatted_correctly
+  validate :has_credits_for_double
 
   scope :past, -> {joins(:match).where('match_date_time < ?', DateTime.now)}
   scope :future, -> {joins(:match).where('match_date_time > ?', DateTime.now)}
@@ -40,6 +41,12 @@ class Prediction < ActiveRecord::Base
   def scorer_is_formatted_correctly
     unless Scorer.all.collect(&:name).include?(self.first_goalscorer)
       errors.add(:first_goalscorer, "Scorer is not formatted correctly, please choose from list")
+    end
+  end
+
+  def has_credits_for_double
+    if double && user.has_no_credits?
+      errors.add(:double, "You have no credits")
     end
   end
  

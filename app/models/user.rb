@@ -26,7 +26,10 @@ class User < ActiveRecord::Base
     end
   end
 
-  
+  def self.add_double_credits_to_users
+    User.all.each { |user| user.add_double_credit_up_to_limit }
+  end
+
   def prediction_for(match)
     predictions.find_by(match: match)
   end
@@ -45,16 +48,32 @@ class User < ActiveRecord::Base
   
   def past_predictions
     past_predictions = Match.all.map do |match|
-      if has_predicted?(match) && match.match_finished?
-        prediction_for(match)
-      end
-    end
+    prediction_for(match) if has_predicted?(match) && match.match_finished?
     return past_predictions.compact
   end
 
   def user_points
     self.total_points = Prediction.this_season.sum(:points)
     save
+  end
+
+  def add_double_credit_up_to_limit
+    add_one_double_credit if self.credits_received < 38
+    save
+  end
+
+  def has_no_credits?
+    self.double_credits <= 0
+  end
+
+  def use_double_credit
+    self.double_credits -= 1 if self.double_credits >= 1
+    save
+  end
+
+  def add_one_double_credit
+    self.double_credits += 1 
+    self.credits_received += 1
   end
 
 end

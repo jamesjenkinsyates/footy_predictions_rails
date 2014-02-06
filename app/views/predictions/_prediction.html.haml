@@ -9,4 +9,5 @@
     %td= f.text_field :away_prediction, size: 1, class: 'away_box'
     %td= prediction.match.away_team 
     %td= f.text_field :first_goalscorer, class: 'first_goal_box typeahead', autocomplete: "off", id: nil
+    %td= f.check_box :double, class: 'double_tick'
     %td= f.submit
