@@ -26,9 +26,14 @@ class Prediction < ActiveRecord::Base
     joins(:match).where('match_date_time < ? AND match_date_time > ?', endpoint, startpoint)
   end
 
+  def self.assign_all_points
+    unscored_predictions = Prediction.all.where(points: nil)
+    unscored_predictions.each{ |prediction| prediction.assign_points }
+  end
+
   def time_cannot_be_after_match_time
     if DateTime.now >= self.match.match_date_time
-      errors.add("Match has already started")
+      errors.add(:match_date_time, "Match has already started")
     end
   end
 
@@ -38,15 +43,23 @@ class Prediction < ActiveRecord::Base
     end
   end
  
-  
   def assign_points
     if self.match.match_finished?
-      points = score_points
+      points = score_prediction_points + first_scorer_points
       self.update(points: points)
     end
   end
 
-  def score_points
+  def first_scorer_points
+    return 1 if scorer_prediction_correct?
+    0
+  end
+
+  def scorer_prediction_correct?
+    self.first_goalscorer == match.first_goalscorer
+  end
+
+  def score_prediction_points
     return 3 if exact_match?(prediction, actual)
     return 1 if result_correct?(prediction, actual)
     0

@@ -2,6 +2,7 @@ FactoryGirl.define do
   factory :prediction, class: Prediction do
     home_prediction 2
     away_prediction 1
+    first_goalscorer "W. Rooney"
     match_id 1
     user_id 1
   end
@@ -9,6 +10,7 @@ FactoryGirl.define do
   factory :correct_prediction, class: Prediction do
     home_prediction 1
     away_prediction 0
+    first_goalscorer "W. Rooney"
     match_id 1
     user_id 1
   end
@@ -16,7 +18,10 @@ FactoryGirl.define do
   factory :incorrect_prediction, class: Prediction do
     home_prediction 0
     away_prediction 1
+    first_goalscorer "W. Rooney"
     match_id 1
     user_id 1
   end
+
+
 end

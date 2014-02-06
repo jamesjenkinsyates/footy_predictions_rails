@@ -4,7 +4,8 @@ FactoryGirl.define do
     away_team "Newcastle"
     home_score 1
     away_score 0
-    match_date_time "2013-12-07 12:45:00"
+    first_goalscorer "W. Rooney"
+    match_date_time (DateTime.now+1.day)
     id 1
   end
 end

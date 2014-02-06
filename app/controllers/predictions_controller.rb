@@ -27,7 +27,8 @@ class PredictionsController < ApplicationController
     if @prediction.update(prediction_params)
       redirect_to dashboard_path
     else
-      flash.now[:error] = "Prediction Edit Failed: #{@prediction.errors.full_messages}"
+      redirect_to dashboard_path
+      flash[:error] = "Prediction Edit Failed: #{@prediction.errors.full_messages}"
     end
   end
 
