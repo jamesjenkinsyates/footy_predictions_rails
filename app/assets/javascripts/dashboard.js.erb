@@ -1,0 +1,53 @@
+$(function() {
+  var field_names = ["home_prediction", "away_prediction", "first_goalscorer", "double"];
+  $('.success-icon, .error-icon, .loading-icon').hide();
+
+  $('.prediction-submit').click(function(e) {
+    e.preventDefault();
+    var $submit = $(this);
+    var $tr = $(this).parents('tr')
+    var $form = $tr.prev();
+    
+    $.ajax({
+      url: $form.attr('action') + '/?' + $form.serialize(),
+      type: $form.attr('data-verb'),
+      beforeSend: function() {
+        $tr.find('.loading-icon').show();
+      },
+      complete: function() {
+        $tr.find('.loading-icon').hide();
+      },
+      success: function(data) {
+        // Checking validation
+        for(var i = 0; i < field_names.length; ++i) {
+          var name = field_names[i];
+          var $field = $tr.find('[name="prediction[' + name + ']"]');
+          $field.removeClass('error');
+          if (name === "first_goalscorer") {
+            console.log($field);
+            $field.popover('destroy');
+          }
+        }
+
+        if (data.is_valid) {
+          $submit.val('Edit');
+          $form.attr('action', data.url);
+          $form.attr('data-verb', 'put');
+          $tr.find('.success-icon').show().fadeOut(3000);
+        } else {
+          // Marking invalid fields
+          $tr.find('.error-icon').show().fadeOut(3000);
+          for(var k in data.errors) {
+            var $field = $tr.find('[name="prediction[' + k + ']"]');
+            $field.addClass('error');
+            if (k === "first_goalscorer") {
+              var errorMessage = data.errors[k].join(', ');
+              $field.popover({content: errorMessage, trigger: 'focus', placement: 'top'});
+            }
+          }
+        }
+      }
+    });
+    return false;
+  });
+});

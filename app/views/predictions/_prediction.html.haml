@@ -1,4 +1,4 @@
-= form_for prediction do |f| 
+= form_for prediction, data: {verb: prediction.id ? :put : :post} do |f| 
   %tr
     = hidden_field_tag 'prediction[match_id]', prediction.match_id
     = hidden_field_tag 'prediction[user_id]',nil,:value => current_user.id
@@ -10,4 +10,8 @@
     %td= prediction.match.away_team 
     %td= f.text_field :first_goalscorer, class: 'first_goal_box typeahead', autocomplete: "off", id: nil
     %td= f.check_box :double, class: 'double_tick'
-    %td= f.submit
+    %td= f.submit class: "prediction-submit"
+    %td
+      %span.glyphicon.glyphicon-ok.text-success.success-icon
+      %span.glyphicon.glyphicon-remove.text-danger.error-icon
+      %span.glyphicon.glyphicon-refresh.loading-icon

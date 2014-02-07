@@ -45,6 +45,8 @@ gem 'twitter-bootstrap-rails',
         github: 'seyhunak/twitter-bootstrap-rails',
         branch: 'bootstrap3'
 
+gem 'formtastic'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false

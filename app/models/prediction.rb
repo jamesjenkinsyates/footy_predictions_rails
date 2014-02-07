@@ -8,7 +8,7 @@ class Prediction < ActiveRecord::Base
   validates :away_prediction, presence: true, inclusion: { in: 0..9 }
   validates :first_goalscorer, presence: true
   validate :time_cannot_be_after_match_time
-  validate :scorer_is_formatted_correctly
+  validate :first_goalscorer, :scorer_is_formatted_correctly
   validate :has_credits_for_double
 
   scope :past, -> {joins(:match).where('match_date_time < ?', DateTime.now)}

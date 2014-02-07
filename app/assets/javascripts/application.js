@@ -12,5 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.validate.min
 //= require twitter/bootstrap
 //= require_tree .
+//= require_self

@@ -48,7 +48,8 @@ class User < ActiveRecord::Base
   
   def past_predictions
     past_predictions = Match.all.map do |match|
-    prediction_for(match) if has_predicted?(match) && match.match_finished?
+      prediction_for(match) if has_predicted?(match) && match.match_finished?
+    end
     return past_predictions.compact
   end
 

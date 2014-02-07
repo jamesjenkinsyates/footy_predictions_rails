@@ -1,7 +1,11 @@
 FootyPredictionsRails::Application.routes.draw do
 
   resources :matches
-  resources :predictions
+  resources :predictions do
+    collection do
+      post :check
+    end
+  end
   resources :groups
 
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }, path_names: { sign_up: "register" }

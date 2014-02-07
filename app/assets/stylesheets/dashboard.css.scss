@@ -71,3 +71,22 @@
 .tt-hint {
      width: 100%;
 }
+
+input.error {
+  border: #f00 1px solid;
+}
+
+input[type="checkbox"] {
+  position: relative;
+}
+
+input[type="checkbox"].error:before {
+  content: "";
+  width: 13px;
+  height: 13px;
+  border: #f00 1px solid;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+}

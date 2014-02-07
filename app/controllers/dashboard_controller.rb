@@ -3,7 +3,7 @@ class DashboardController < ApplicationController
 
   def index 
     @predictions = current_user.match_predictions
-    @results = current_user.past_predictions
+    @results = @results = current_user.past_predictions || []
     @scorers = Scorer.all.map { |scorer| scorer.name }
     @others_predictions = group_members_with_predictions
     @users = User.all.sort_by(&:total_points).reverse
