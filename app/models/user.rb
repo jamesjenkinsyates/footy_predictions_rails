@@ -63,6 +63,11 @@ class User < ActiveRecord::Base
     save
   end
 
+  def add_used_credit_back
+    add_each_double_credit
+    save
+  end
+
   def has_no_credits?
     self.double_credits <= 0
   end
@@ -73,7 +78,15 @@ class User < ActiveRecord::Base
   end
 
   def add_one_double_credit
-    self.double_credits += 1 
+    add_each_double_credit
+    count_each_credit_recieved
+  end
+
+  def add_each_double_credit
+    self.double_credits += 1
+  end
+
+  def count_each_credit_recieved
     self.credits_received += 1
   end
 
