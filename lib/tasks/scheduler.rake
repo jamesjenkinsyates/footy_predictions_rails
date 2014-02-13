@@ -23,13 +23,14 @@ namespace :get do
 end
 
 namespace :background do
-  task assign_points_to_predictions: :environment do
-    puts "Assigning Points to Predictions..."
+  task assign_points: :environment do
+    puts "Assigning Points..."
     Prediction.assign_all_points
+    User.assign_points_to_all_users
     puts "Done."
   end
   task give_new_credits: :environment do
-    puts "Giving New Doubles Credits..."
+    puts "Giving new doubles credits..."
     User.add_double_credits_to_users
     puts "Done."
   end
