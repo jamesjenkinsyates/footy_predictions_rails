@@ -31,7 +31,7 @@ class PredictionsController < ApplicationController
     err_hash = {}
     if @prediction.update(prediction_params)
       @prediction.user.use_double_credit if @prediction.double && !current_double_status
-      @prediction.user.add_used_credit_back if !@prediction.double && current_double_status
+      @prediction.user.refund_credit if !@prediction.double && current_double_status
     else
       [:home_prediction, :away_prediction, :first_goalscorer, :double].each do |key|
         err_hash[key] = @prediction.errors[key] if @prediction.errors[key].any?

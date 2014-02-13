@@ -45,7 +45,9 @@ class Prediction < ActiveRecord::Base
   end
 
   def has_credits_for_double
-    if double && user.has_no_credits?
+    persisted_prediction = self.id ? Prediction.find(self.id) : nil
+    was_double_before = persisted_prediction && persisted_prediction.double?
+    if double && !was_double_before && user.has_no_credits?
       errors.add(:double, "You have no credits")
     end
   end

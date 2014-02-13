@@ -63,7 +63,7 @@ class User < ActiveRecord::Base
     save
   end
 
-  def add_used_credit_back
+  def refund_credit
     add_each_double_credit
     save
   end
