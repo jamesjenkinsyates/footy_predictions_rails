@@ -25,7 +25,7 @@ end
 namespace :background do
   task assign_points_to_predictions: :environment do
     puts "Assigning Points to Predictions..."
-    ScorerFetcher.save_scorers
+    Prediction.assign_all_points
     puts "Done."
   end
   task give_new_credits: :environment do

@@ -52,9 +52,13 @@ class User < ActiveRecord::Base
     end
     return past_predictions.compact
   end
+  
+  def self.assign_points_to_all_users
+    User.all.each { |user| user.user_points }
+  end
 
   def user_points
-    self.total_points = Prediction.this_season.sum(:points)
+    self.total_points = predictions.where(user: self).this_season.sum(:points)
     save
   end
 

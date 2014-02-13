@@ -28,11 +28,17 @@ module MatchFetcher
     json.each do |result|
       score = result["fulltime"]
       goal = result['incidents'].detect { |incidents| incidents['goaltype'] != nil }
-
-      first_goalscorer_player_name = "No Goal Scorer" if goal.empty?
-      first_goalscorer_player_name = goal["playershort"]
-
-      Match.where(home_score: score[0], away_score: score[1], first_goalscorer: first_goalscorer_player_name).find_by(api_match_id: result["id"])
+      if goal.nil?
+        first_goalscorer_player_name = "No Goal Scorer" 
+      else
+        first_goalscorer_player_name = goal["playershort"]
+      end
+      
+      match = Match.find_by(api_match_id: result["id"])
+      match.update(home_score: score[0], away_score: score[1], first_goalscorer: first_goalscorer_player_name)
+      puts match.inspect
+      
+      
     end
   end
 

@@ -53,10 +53,15 @@ class Prediction < ActiveRecord::Base
   end
  
   def assign_points
-    if self.match.match_finished?
-      points = score_prediction_points + first_scorer_points
-      self.update(points: points)
+    if self.match.match_finished? && !self.actual.include?(nil)
+      puts match.inspect
+      prediction_points = score_prediction_points + first_scorer_points
+      puts prediction_points
+      puts self.inspect
+      self.update_attribute(:points, prediction_points)
+      puts self.inspect
     end
+    puts self.inspect
   end
 
   def first_scorer_points
