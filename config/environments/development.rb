@@ -27,7 +27,20 @@ FootyPredictionsRails::Application.configure do
   # number of complex assets.
   config.assets.debug = true
   
+  # ActionMailer::Base.smtp_settings = {
+  #     :port =>           '587',
+  #     :address =>        'smtp.mandrillapp.com',
+  #     :user_name =>      ENV['MANDRILL_USERNAME'],
+  #     :password =>       ENV['MANDRILL_APIKEY'],
+  #     :domain =>         'heroku.com',
+  #     :authentication => :plain
+  # }
+  # ActionMailer::Base.delivery_method = :smtp
+
+
+
+
   #ActionMailer uses letter opener
-  config.action_mailer.default_url_options = { :host => 'localhost'} 
+  config.action_mailer.default_url_options = { :host => 'localhost:3000'} 
   config.action_mailer.delivery_method = :letter_opener
 end

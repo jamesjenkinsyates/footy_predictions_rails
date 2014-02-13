@@ -39,7 +39,7 @@ gem 'clockwork'
 
 gem 'httparty'
 
-gem 'mandrill-api'
+# gem 'mandrill-api'
 
 gem 'twitter-bootstrap-rails', 
         github: 'seyhunak/twitter-bootstrap-rails',
