@@ -74,6 +74,10 @@ end
 
 gem 'pry-rails'
 
+#gem 'resque'
+#gem 'hirefire'
+
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 

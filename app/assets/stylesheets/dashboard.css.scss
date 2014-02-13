@@ -73,7 +73,7 @@
 }
 
 input.error {
-  border: #f00 1px solid;
+  border: #f00 2px solid;
 }
 
 input[type="checkbox"] {
@@ -84,7 +84,7 @@ input[type="checkbox"].error:before {
   content: "";
   width: 13px;
   height: 13px;
-  border: #f00 1px solid;
+  border: #f00 2px solid;
   display: block;
   position: absolute;
   top: 0;
