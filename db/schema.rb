@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20140206170133) do
     t.integer  "home_prediction"
     t.integer  "away_prediction"
     t.string   "first_goalscorer"
-    t.boolean  "double",           default: false
+    t.boolean  "double"
     t.integer  "user_id"
     t.integer  "match_id"
     t.datetime "created_at"

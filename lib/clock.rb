@@ -12,5 +12,5 @@ module Clockwork
   every(1.day, 'Get scorers'){`rake get:scorers`; puts "Got scorers" }
   every(30.minutes, 'Assign all points'){ Prediction.assign_all_points; puts "Assigned Points" }
   every(6.days, 'Give new credits'){ User.add_double_credits_to_users; puts "Added Double Credits" }
-
+  
 end
