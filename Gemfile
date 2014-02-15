@@ -74,7 +74,8 @@ end
 
 gem 'pry-rails'
 
-#gem 'resque'
+gem 'sidekiq'
+gem 'devise-async'
 #gem 'hirefire'
 
 
