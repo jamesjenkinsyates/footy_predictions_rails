@@ -7,6 +7,7 @@ gem 'rails', '4.0.1'
 # Use postgresql as the database for Active Record
 gem 'pg'
 
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 gem 'haml'
@@ -38,8 +39,6 @@ gem 'dotenv-rails'
 gem 'clockwork'
 
 gem 'httparty'
-
-# gem 'mandrill-api'
 
 gem 'twitter-bootstrap-rails', 
         github: 'seyhunak/twitter-bootstrap-rails',
@@ -75,6 +74,7 @@ end
 gem 'pry-rails'
 
 gem 'sidekiq'
+gem 'sidetiq'
 gem 'devise-async'
 #gem 'hirefire'
 

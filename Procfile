@@ -1,1 +1,1 @@
-clock: clockwork lib/clock.rb
+worker: 
