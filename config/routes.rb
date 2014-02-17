@@ -27,6 +27,10 @@ FootyPredictionsRails::Application.routes.draw do
   post 'join_group', to: 'dashboard#join_group', as: 'join_group'
   get '/history', to: 'dashboard#history'
 
+  require 'sidekiq/web'
+  authenticate :user, lambda { |u| u.admin? } do
+    mount Sidekiq::Web => '/sidekiq'
+  end
 
 
 

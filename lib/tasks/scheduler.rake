@@ -16,7 +16,7 @@ namespace :get do
     puts "Done."
   end
   task scorers: :environment do
-    puts "Getting Results..."
+    puts "Getting Scorers..."
     ScorerFetcher.save_scorers
     puts "Done."
   end
