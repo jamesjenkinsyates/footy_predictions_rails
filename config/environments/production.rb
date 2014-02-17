@@ -95,7 +95,7 @@ FootyPredictionsRails::Application.configure do
       :address =>        'smtp.mandrillapp.com',
       :user_name =>      ENV['MANDRILL_USERNAME'],
       :password =>       ENV['MANDRILL_APIKEY'],
-      :domain =>         'heroku.com',
+      :domain =>         'dolphin.football-predictions.c66.me',
       :authentication => :plain
   }
   ActionMailer::Base.delivery_method = :smtp
