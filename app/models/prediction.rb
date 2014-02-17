@@ -11,6 +11,7 @@ class Prediction < ActiveRecord::Base
   validate :first_goalscorer, :scorer_is_formatted_correctly
   validate :has_credits_for_double
 
+  scope :awaiting_points, where(points: nil)
   scope :past, -> {joins(:match).where('match_date_time < ?', DateTime.now)}
   scope :future, -> {joins(:match).where('match_date_time > ?', DateTime.now)}
   scope :this_season, -> do
@@ -28,40 +29,19 @@ class Prediction < ActiveRecord::Base
   end
 
   def self.assign_all_points
-    unscored_predictions = Prediction.all.where(points: nil)
-    unscored_predictions.each{ |prediction| prediction.assign_points }
-  end
-
-  def time_cannot_be_after_match_time
-    if DateTime.now >= self.match.match_date_time
-      errors.add(:match_date_time, "Match has already started")
-    end
-  end
-
-  def scorer_is_formatted_correctly
-    unless Scorer.all.collect(&:name).include?(self.first_goalscorer)
-      errors.add(:first_goalscorer, "Scorer is not formatted correctly, please choose from list")
-    end
-  end
-
-  def has_credits_for_double
-    persisted_prediction = self.id ? Prediction.find(self.id) : nil
-    was_double_before = persisted_prediction && persisted_prediction.double?
-    if double && !was_double_before && user.has_no_credits?
-      errors.add(:double, "You have no credits")
-    end
+    Prediction.awaiting_points.each{ |prediction| prediction.assign_points }
   end
  
   def assign_points
     if self.match.match_finished? && !self.actual.include?(nil)
-      puts match.inspect
-      prediction_points = score_prediction_points + first_scorer_points
-      puts prediction_points
-      puts self.inspect
+      prediction_points = (score_prediction_points + first_scorer_points) * double_multipler
       self.update_attribute(:points, prediction_points)
-      puts self.inspect
     end
-    puts self.inspect
+  end
+
+  def double_multipler
+    return 2 if double
+    1
   end
 
   def first_scorer_points
@@ -123,6 +103,28 @@ class Prediction < ActiveRecord::Base
 
   def score_analyser home_score, away_score
     home_score - away_score
+  end
+
+# Validation Methods
+
+  def scorer_is_formatted_correctly
+    unless Scorer.all.collect(&:name).include?(self.first_goalscorer)
+      errors.add(:first_goalscorer, "Scorer is not formatted correctly, please choose from list")
+    end
+  end
+
+  def time_cannot_be_after_match_time
+    if DateTime.now >= self.match.match_date_time
+      errors.add(:match_date_time, "Match has already started")
+    end
+  end
+
+  def has_credits_for_double
+    persisted_prediction = self.id ? Prediction.find(self.id) : nil
+    was_double_before = persisted_prediction && persisted_prediction.double?
+    if double && !was_double_before && user.has_no_credits?
+      errors.add(:double, "You have no credits")
+    end
   end
 
 end
