@@ -7,6 +7,7 @@ gem 'rails', '4.0.1'
 # Use postgresql as the database for Active Record
 gem 'pg'
 
+gem 'thin'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -75,6 +76,7 @@ gem 'pry-rails'
 
 gem 'sidekiq'
 gem 'sidetiq'
+gem 'sinatra', require: false
 gem 'devise-async'
 #gem 'hirefire'
 
