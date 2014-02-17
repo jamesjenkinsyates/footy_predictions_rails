@@ -25,6 +25,7 @@ module MatchFetcher
 
   def self.save_results
     json = get_results
+    puts json.length
     json.each do |result|
       score = result["fulltime"]
       goal = result['incidents'].detect { |incidents| incidents['goaltype'] != nil }
@@ -34,7 +35,8 @@ module MatchFetcher
         first_goalscorer_player_name = goal["playershort"]
       end
       
-      match = Match.find_by(api_match_id: result["id"])
+      match = Match.find_by(api_match_id: result["id"]) 
+      return nil if match.nil?
       match.update(home_score: score[0], away_score: score[1], first_goalscorer: first_goalscorer_player_name)
       puts match.inspect
       

@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
   has_many :predictions
   belongs_to :group
 
+  before_create :capitalize_name
+
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
     if user
@@ -15,6 +17,9 @@ class User < ActiveRecord::Base
     else
       registered_user = User.where(:email => auth.info.email).first
       if registered_user
+        registered_user.update(name: auth.extra.raw_info.name, 
+                               provider:auth.provider, 
+                               uid:auth.uid)
         return registered_user
       else
         user = User.create(name:auth.extra.raw_info.name,
@@ -93,6 +98,10 @@ class User < ActiveRecord::Base
 
   def count_each_credit_recieved
     self.credits_received += 1
+  end
+
+  def capitalize_name
+    self.name = name.split.map(&:capitalize).join(' ')
   end
 
 end
