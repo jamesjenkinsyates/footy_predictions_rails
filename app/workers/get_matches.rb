@@ -3,7 +3,7 @@ class GetMatches
   include Sidekiq::Worker
   include Sidetiq::Schedulable
 
-  recurrence { minutely }
+  recurrence { hourly }
 
   def perform
     puts "Getting Matches..."

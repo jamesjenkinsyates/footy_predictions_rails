@@ -39,8 +39,6 @@ module MatchFetcher
       return nil if match.nil?
       match.update(home_score: score[0], away_score: score[1], first_goalscorer: first_goalscorer_player_name)
       puts match.inspect
-      
-      
     end
   end
 

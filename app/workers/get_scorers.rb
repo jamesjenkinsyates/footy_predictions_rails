@@ -3,7 +3,7 @@ class GetScorers
   include Sidekiq::Worker
   include Sidetiq::Schedulable
 
-  recurrence { hourly }
+  recurrence { daily }
 
   def perform
     puts "Getting Scorers..."

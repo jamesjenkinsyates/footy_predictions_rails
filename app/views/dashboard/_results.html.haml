@@ -1,36 +1,18 @@
-%h4 Your results
+%h3 Your results
 - if @results.empty? 
   You currently have no results.
 - else
-  - @results.each do |prediction|
-    .result
-      %table
-        %tr
-          %th Date
-          %th Home
-          %th 
-          %th Away
-          %th 
-          %th First Goalscorer
-          %th Score
-          %th 
-          %th Points
-        %tr
-          %td
-            = prediction.match.match_date_time.strftime("%a %e %b %H:%M")
-          %td
-            = prediction.match.home_team
-          %td
-            = prediction.home_prediction
-          %td
-            = prediction.match.away_team
-          %td
-            = prediction.away_prediction
-          %td
-            = prediction.first_goalscorer
-          %td
-            = prediction.match.home_score
-          %td
-            = prediction.match.away_score
-          %td
-            = prediction.points
+  .result
+    %table
+      %tr
+        %th Date
+        %th Home
+        %th 
+        %th Away
+        %th 
+        %th 1st Goalscorer (Predicted)
+        %th Score
+        %th 
+        %th 1st Goalscorer (Real)
+        %th Points
+      = render "result"

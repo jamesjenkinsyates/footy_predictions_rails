@@ -1,7 +1,8 @@
-%h4 Groups - Coming less soon
+%h3 Groups
 
-= link_to "New Group", new_group_path
-<br>
+- if current_user.admin?
+  = link_to "New Group", new_group_path
+  %br
 You can only be in one group at a time.
 <br><br>
 = @users_group

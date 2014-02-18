@@ -1,9 +1,9 @@
 class GiveDoubles
 
   include Sidekiq::Worker
-  include Sidetiq::Schedulable
+  # include Sidetiq::Schedulable
 
-  recurrence { minutely }
+  # recurrence {  }
 
   def perform
     puts "Giving new doubles credits..."

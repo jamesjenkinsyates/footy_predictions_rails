@@ -1,3 +1,23 @@
-%h4 Other Predictions - Coming soon
-
-= @others_predictions
+%h3 Other Predictions (Group)
+%br
+- @others_predictions.each do |array|
+  .user_table
+    %h4
+      = array[:user].name
+    - if array[:predictions].empty? 
+      = "Have made no predictions"
+    - array[:predictions].each do |prediction|
+      %table
+        %tr
+          %th Date
+          %th Home
+          %th 
+          %th Away
+          %th 
+          %th 1st Goalscorer (Predicted)
+          - if prediction.match.match_finished?
+            %th Score
+            %th 
+            %th 1st Goalscorer (Real)
+            %th Points
+        = render partial: "others_prediction", locals: {:prediction => prediction}

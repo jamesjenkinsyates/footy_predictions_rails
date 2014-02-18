@@ -78,7 +78,7 @@ FootyPredictionsRails::Application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
   
-  config.action_mailer.default_url_options = { :host => 'football-predictions.herokuapp.com'} 
+  config.action_mailer.default_url_options = { :host => '2goals1ball.com'} 
   
   # ActionMailer::Base.smtp_settings = {
   #   :address        => 'smtp.sendgrid.net',
@@ -95,7 +95,7 @@ FootyPredictionsRails::Application.configure do
       :address =>        'smtp.mandrillapp.com',
       :user_name =>      ENV['MANDRILL_USERNAME'],
       :password =>       ENV['MANDRILL_APIKEY'],
-      :domain =>         'dolphin.football-predictions.c66.me',
+      :domain =>         '2goals1ball.com',
       :authentication => :plain
   }
   ActionMailer::Base.delivery_method = :smtp
