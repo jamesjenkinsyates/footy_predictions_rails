@@ -1,5 +1,7 @@
 %h3 Other Predictions (Group)
 %br
+- if @others_predictions.empty?
+  You are not a member of a group
 - @others_predictions.each do |array|
   .user_table
     %h4

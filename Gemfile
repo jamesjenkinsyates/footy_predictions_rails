@@ -69,7 +69,6 @@ end
 
 group :production do
   gem 'rails_12factor'
-  gem 'newrelic_rpm'
 end
 
 gem 'pry-rails'
@@ -78,7 +77,6 @@ gem 'sidekiq'
 gem 'sidetiq'
 gem 'sinatra', require: false
 gem 'devise-async'
-#gem 'hirefire'
 
 
 # Use ActiveModel has_secure_password
