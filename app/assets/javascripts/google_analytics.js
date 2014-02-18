@@ -3,5 +3,5 @@
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-44439915-4', 'football-predictions.herokuapp.com');
+  ga('create', 'UA-44439915-4', '2goals1ball.com');
   ga('send', 'pageview');

@@ -37,11 +37,11 @@ class DashboardController < ApplicationController
       return array
     end
   
-  def user_group user
-    if user.group != nil
-      return "Your current group: #{user.group.name}"
-    else
-      return "You are not currently a member of a group"
+    def user_group user
+      if user.group != nil
+        return "Your current group: #{user.group.name}"
+      else
+        return "You are not currently a member of a group"
+      end
     end
-  end
 end

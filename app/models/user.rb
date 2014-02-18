@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   belongs_to :group
 
   before_create :capitalize_name
-  after_create :give_12_double_credits
+  before_create :give_12_double_credits
 
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
@@ -105,7 +105,7 @@ class User < ActiveRecord::Base
     self.name = name.split.map(&:capitalize).join(' ')
   end
 
-  def give_12_double_points
+  def give_12_double_credits
     self.double_credits = 12 if DateTime.now < "Tue, 18 Aug 2014 17:48:35 +0000"
   end
 
