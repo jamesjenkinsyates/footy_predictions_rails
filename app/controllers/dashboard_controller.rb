@@ -25,7 +25,7 @@ class DashboardController < ApplicationController
 
 
     def group_members_with_predictions
-      #return [] if current_user.group_id == nil
+      return [] if current_user.group_id == nil
       array = []
       user_group = current_user.group_id
       users_in_group = User.where(group_id: user_group)
