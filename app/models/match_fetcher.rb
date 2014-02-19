@@ -28,7 +28,7 @@ module MatchFetcher
     puts json.length
     json.each do |result|
       score = result["fulltime"]
-      goal = result['incidents'].detect { |incidents| incidents['goaltype'] != nil }
+      goal = result["incidents"].detect { |incidents| incidents['goaltype'] != nil }
       if goal.nil?
         first_goalscorer_player_name = "No Goal Scorer" 
       else
@@ -38,7 +38,6 @@ module MatchFetcher
       match = Match.find_by(api_match_id: result["id"]) 
       return nil if match.nil?
       match.update(home_score: score[0], away_score: score[1], first_goalscorer: first_goalscorer_player_name)
-      puts match.inspect
     end
   end
 
