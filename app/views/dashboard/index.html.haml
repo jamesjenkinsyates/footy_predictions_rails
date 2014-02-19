@@ -9,7 +9,7 @@
 
   %ul.nav.nav-tabs.dash-nav
     %li.active
-      %a{"data-toggle" => "tab", :href => "#predictions"} Week's Predictions
+      %a{"data-toggle" => "tab", :href => "#predictions"} Make Predictions
     %li
       %a{"data-toggle" => "tab", :href => "#results"} Results
     %li
@@ -19,7 +19,7 @@
 
   .tab-content
     #predictions.tab-pane.fade.in.active
-      = render 'weeks_predictions'
+      = render 'make_predictions'
     #results.tab-pane.fade
       = render 'results'
     #others.tab-pane.fade
