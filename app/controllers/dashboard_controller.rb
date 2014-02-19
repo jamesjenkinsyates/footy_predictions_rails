@@ -6,7 +6,7 @@ class DashboardController < ApplicationController
     @results = current_user.past_predictions || []
     @scorers = Scorer.all.map { |scorer| scorer.name }
     @others_predictions = group_members_with_predictions
-    @users = User.all.sort_by(&:total_points).reverse
+    @users = User.find(:all, :order => 'total_points desc', :limit => 10)
     @groups = Group.all
     @users_group = user_group(current_user)
   end
