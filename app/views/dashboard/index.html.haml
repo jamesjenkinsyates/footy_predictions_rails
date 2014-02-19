@@ -16,6 +16,8 @@
       %a{"data-toggle" => "tab", :href => "#others"} Other's Predictions
     %li
       %a{"data-toggle" => "tab", :href => "#groups"} Groups
+    %li
+      %a{"data-toggle" => "tab", :href => "#howto"} How to Play
 
   .tab-content
     #predictions.tab-pane.fade.in.active
@@ -26,6 +28,9 @@
       = render 'others_predictions'
     #groups.tab-pane.fade
       = render 'groups_list'
+    #howto.tab-pane.fade
+      = render 'rules'
+
 
 .col-md-4.col-xs-6.col-lg-4.leaderboard-box
   = render 'leaderboard'

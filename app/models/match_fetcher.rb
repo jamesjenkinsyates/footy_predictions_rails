@@ -3,7 +3,7 @@ module MatchFetcher
  def self.get_fixtures
     todays_date = Time.now.to_date
     date_now = todays_date.strftime('%Y-%m-%d')
-    date_to = (todays_date + 14.days).strftime('%Y-%m-%d')
+    date_to = (todays_date + 7.days).strftime('%Y-%m-%d')
     fixtures = "http://api.statsfc.com/fixtures.json?key=#{ENV['STATS_FC_SECRET']}&competition=premier-league&from=#{date_now}&to=#{date_to}"
     json_get(fixtures)
   end

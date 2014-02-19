@@ -24,10 +24,10 @@ class User < ActiveRecord::Base
         return registered_user
       else
         user = User.create(name:auth.extra.raw_info.name,
-                            provider:auth.provider,
-                            uid:auth.uid,
-                            email:auth.info.email,
-                            password:Devise.friendly_token[0,20],
+                           provider:auth.provider,
+                           uid:auth.uid,
+                           email:auth.info.email,
+                           password:Devise.friendly_token[0,20],
                           ).skip_confirmation!
       end
     end
@@ -102,7 +102,7 @@ class User < ActiveRecord::Base
   end
 
   def capitalize_name
-    self.name = name.split.map(&:capitalize).join(' ')
+    self.name = name.split.map(&:capitalize).join(' ') unless uid != nil
   end
 
   def give_12_double_credits
