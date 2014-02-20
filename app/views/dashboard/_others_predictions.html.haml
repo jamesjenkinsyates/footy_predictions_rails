@@ -1,16 +1,16 @@
 %h3 Other Predictions (Group)
 %br
 - if current_user.group == nil
-  You are not a member of a group
+  You are not a member of a group.
 - elsif @others_predictions.empty?
-  No one else has made a prediction.
+  No one else is in this group.
 - else 
   - @others_predictions.each do |array|
     .user_table
       %h4
         = array[:user].name
       - if array[:predictions].empty? 
-        = "Have made no predictions"
+        No one else has made a prediction.
       - array[:predictions].each do |prediction|
         %table
           %tr
