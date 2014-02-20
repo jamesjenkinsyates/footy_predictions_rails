@@ -1,25 +1,28 @@
 %h3 Other Predictions (Group)
 %br
-- if @others_predictions.empty?
+- if current_user.group == nil
   You are not a member of a group
-- @others_predictions.each do |array|
-  .user_table
-    %h4
-      = array[:user].name
-    - if array[:predictions].empty? 
-      = "Have made no predictions"
-    - array[:predictions].each do |prediction|
-      %table
-        %tr
-          %th Date
-          %th Home
-          %th 
-          %th Away
-          %th 
-          %th 1st Goalscorer (Predicted)
-          - if prediction.match.match_finished?
-            %th Score
+- elsif @others_predictions.empty?
+  No one else has made a prediction.
+- else 
+  - @others_predictions.each do |array|
+    .user_table
+      %h4
+        = array[:user].name
+      - if array[:predictions].empty? 
+        = "Have made no predictions"
+      - array[:predictions].each do |prediction|
+        %table
+          %tr
+            %th Date
+            %th Home
             %th 
-            %th 1st Goalscorer (Real)
-            %th Points
-        = render partial: "others_prediction", locals: {:prediction => prediction}
+            %th Away
+            %th 
+            %th 1st Goalscorer (Predicted)
+            - if prediction.match.match_finished?
+              %th Score
+              %th 
+              %th 1st Goalscorer (Real)
+              %th Points
+          = render partial: "others_prediction", locals: {:prediction => prediction}
