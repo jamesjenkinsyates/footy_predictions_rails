@@ -11,17 +11,17 @@
         = array[:user].name
       - if array[:predictions].empty? 
         No one else has made a prediction.
-      - else
-        %table
-          %tr
-            %th Date
-            %th Home
-            %th 
-            %th Away
-            %th 
-            %th 1st Goalscorer (Predicted)
-            %th Score
-            %th 
-            %th 1st Goalscorer (Real)
-            %th Points
+      %table
+        %tr
+          %th Date
+          %th Home
+          %th 
+          %th Away
+          %th 
+          %th 1st Goalscorer (Predicted)
+          %th Score
+          %th 
+          %th 1st Goalscorer (Real)
+          %th Points
+        - array[:predictions].reverse.each do |prediction|
           = render partial: "others_prediction", locals: {:prediction => prediction}
