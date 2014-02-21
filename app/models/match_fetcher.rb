@@ -25,7 +25,7 @@ module MatchFetcher
 
   def self.save_results
     json = get_results
-    puts json.length
+    return nil if json.include?("error")
     json.each do |result|
       score = result["fulltime"]
       goal = result["incidents"].detect { |incidents| incidents['goaltype'] != nil }
