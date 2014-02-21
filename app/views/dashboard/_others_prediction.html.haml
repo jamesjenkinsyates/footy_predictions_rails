@@ -11,6 +11,9 @@
     = prediction.away_prediction
   %td
     = prediction.first_goalscorer
+  %td
+    - if prediction.double? 
+      %span.fa.fa-superscript
   - if prediction.match.match_finished?
     %td
       = prediction.match.home_score
