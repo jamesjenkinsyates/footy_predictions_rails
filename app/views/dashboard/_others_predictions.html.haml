@@ -11,7 +11,7 @@
         = array[:user].name
       - if array[:predictions].empty? 
         No one else has made a prediction.
-      - array[:predictions].each do |prediction|
+      - else
         %table
           %tr
             %th Date
@@ -20,9 +20,8 @@
             %th Away
             %th 
             %th 1st Goalscorer (Predicted)
-            - if prediction.match.match_finished?
-              %th Score
-              %th 
-              %th 1st Goalscorer (Real)
-              %th Points
+            %th Score
+            %th 
+            %th 1st Goalscorer (Real)
+            %th Points
           = render partial: "others_prediction", locals: {:prediction => prediction}
