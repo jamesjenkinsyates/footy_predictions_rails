@@ -31,7 +31,7 @@ class DashboardController < ApplicationController
       users_in_group = User.where(group_id: user_group)
       users_array = users_in_group.map do |user| 
         user
-        predictions_array = user.predictions.limit(10)
+        predictions_array = user.predictions
         array << {user: user, predictions: predictions_array} unless user == current_user
       end
       return array

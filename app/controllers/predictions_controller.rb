@@ -45,6 +45,10 @@ class PredictionsController < ApplicationController
     @match = @prediction.match
   end
 
+  def method_name
+    
+  end
+
   def check
     @prediction = Prediction.new(prediction_params)
 
